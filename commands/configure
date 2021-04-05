@@ -1,0 +1,20 @@
+#!/bin/bash
+# shellcheck source=../common
+source "$CLI_WORKDIR/common"
+
+echo "
+This is Developer CLI configuration.
+It will ask you a few questions and configure your CLI.
+"
+
+echo -n "What is your name: "
+read -r NAME
+create_config NAME "$NAME"
+
+echo -n "Github account username: "
+read -r GH_USERNAME
+append_config GH_USERNAME "$GH_USERNAME"
+
+echo -n "Github account password: "
+read -s -r GH_PASSWORD
+append_config GH_PASSWORD "$GH_PASSWORD"

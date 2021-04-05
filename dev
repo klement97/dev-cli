@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -e
+
+CLI_WORKDIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$CLI_WORKDIR" ]]; then CLI_WORKDIR="$PWD"; fi
+#CLI_WORKDIR=$(cd "$(dirname "$0")" && pwd)
+export CLI_WORKDIR
+
+CLI_COMMANDS=("$CLI_WORKDIR/commands")
+export CLI_COMMANDS
+
+CLI_LOGS=("$CLI_WORKDIR/logs")
+export CLI_LOGS
+
+CLI_CONFIG=$CLI_WORKDIR/config
+export CLI_CONFIG
+
+# shellcheck source=common
+source "$CLI_WORKDIR/common"
+
+cli_help() {
+  local cli_name=${0##*/}
+  echo "
+Developer CLI
+Version: $(cat "$CLI_WORKDIR"/VERSION)
+https://github.com/klement97/dev-cli
+
+Usage: $cli_name [command]
+
+Commands:
+  deploy    Deploy
+  *         Help
+"
+  exit 1
+}
+
+case "$1" in
+configure | d)
+  "$CLI_COMMANDS/configure" "$2" | tee -ia "$CLI_LOGS/configure_${2}.log"
+  ;;
+*)
+  cli_help
+  ;;
+esac
