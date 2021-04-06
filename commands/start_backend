@@ -1,0 +1,18 @@
+#!/bin/bash
+
+BACKEND_PATH="$HOME/Workspace/CARDO/backend"
+
+startb() {
+  echo "Starting backend server..."
+  cd "$BACKEND_PATH" || return 1
+
+  if [ -d "venv" ]; then
+    docker-compose -f docker-compose-dev.yml up -d db
+    source venv/bin/activate
+    python back_end/manage.py runserver 0.0.0.0:8000
+
+  else
+    docker-compose -f docker-compose-dev.yml up -d
+
+  fi
+}

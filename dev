@@ -3,7 +3,6 @@ set -e
 
 CLI_WORKDIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$CLI_WORKDIR" ]]; then CLI_WORKDIR="$PWD"; fi
-#CLI_WORKDIR=$(cd "$(dirname "$0")" && pwd)
 export CLI_WORKDIR
 
 CLI_COMMANDS=("$CLI_WORKDIR/commands")
@@ -35,9 +34,17 @@ Commands:
 }
 
 case "$1" in
-configure | d)
-  "$CLI_COMMANDS/configure" "$2" | tee -ia "$CLI_LOGS/configure_${2}.log"
+
+configure | c)
+  "$CLI_COMMANDS/configure" | tee -ia "$CLI_LOGS/configure.log"
   ;;
+
+startb | b)
+  # shellcheck source=commands/start_backend
+  . "$CLI_COMMANDS/start_backend"
+  startb | tee -ia "$CLI_LOGS/start_backend.log"
+  ;;
+
 *)
   cli_help
   ;;
