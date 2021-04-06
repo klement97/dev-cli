@@ -45,6 +45,13 @@ startb | b)
   startb | tee -ia "$CLI_LOGS/start_backend.log"
   ;;
 
+
+startf | f)
+  # shellcheck source=commands/start_backend
+  . "$CLI_COMMANDS/start_frontend"
+  startf | tee -ia "$CLI_LOGS/start_frontend.log"
+  ;;
+
 *)
   cli_help
   ;;

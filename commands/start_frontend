@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FRONTEND_PATH="$HOME/Workspace/CARDO/frontend"
+
+startf() {
+  cd "$FRONTEND_PATH" || exit 1
+  yarn start
+}
