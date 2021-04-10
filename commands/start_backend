@@ -1,13 +1,14 @@
 #!/bin/bash
 
-BACKEND_PATH="$HOME/Workspace/CARDO/backend"
-
 startb() {
+  BACKEND_PATH=$1
   echo "Starting backend server..."
   cd "$BACKEND_PATH" || return 1
 
   if [ -d "venv" ]; then
+    # todo: ask for docker file and services user wants to get up
     docker-compose -f docker-compose-dev.yml up -d db
+    # todo: ask if he prefer venv on docker-compose
     source venv/bin/activate
     python back_end/manage.py runserver 0.0.0.0:8000
 
