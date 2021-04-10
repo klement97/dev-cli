@@ -1,0 +1,8 @@
+#!/bin/bash
+
+exec() {
+  local COMMAND=$1
+  local CONTAINER=$2
+
+  docker exec -it "mercury-backend_""$CONTAINER""_1" "$COMMAND"
+}

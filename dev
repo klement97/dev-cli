@@ -63,6 +63,12 @@ restore_db | rdb)
   restore "$@" | tee -ia "$CLI_LOGS/restore_database.log"
   ;;
 
+exec)
+  # shellcheck source=commands/docker_exec
+  . "$CLI_COMMANDS/docker_exec"
+  exec "$@" | tee -ia "$CLI_LOGS/docker_exec.log"
+  ;;
+
 *)
   cli_help
   ;;
