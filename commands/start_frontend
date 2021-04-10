@@ -1,0 +1,15 @@
+#!/bin/bash
+
+startf() {
+  local FRONTEND_PATH=$1
+  cd "$FRONTEND_PATH" || exit 1
+
+  if [ -f "/usr/bin/yarn" ]; then
+    yarn start
+  elif [ -f /usr/bin/npm ]; then
+    npm run start
+  else
+    echo "You must have either yarn or npm installed to start the project."
+    exit 1
+  fi
+}
