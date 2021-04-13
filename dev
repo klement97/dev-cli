@@ -11,11 +11,17 @@ export CLI_COMMANDS
 CLI_LOGS=("$CLI_WORKDIR/logs")
 export CLI_LOGS
 
-CLI_CONFIG=$CLI_WORKDIR/config
+# Load config
+CLI_CONFIG=("$CLI_WORKDIR/config")
 export CLI_CONFIG
 
+if [ -f "$CLI_CONFIG" ]; then
+  # shellcheck source=config
+  . "$CLI_CONFIG"
+fi
+
 # shellcheck source=common
-source "$CLI_WORKDIR/common"
+. "$CLI_WORKDIR/common"
 
 cli_help() {
   local cli_name=${0##*/}
@@ -42,7 +48,25 @@ configure | c)
 startb | b)
   # shellcheck source=commands/start_backend
   . "$CLI_COMMANDS/start_backend"
-  startb | tee -ia "$CLI_LOGS/start_backend.log"
+  startb "$BACKEND_PATH" | tee -ia "$CLI_LOGS/start_backend.log"
+  ;;
+
+startf | f)
+  # shellcheck source=commands/start_frontend
+  . "$CLI_COMMANDS/start_frontend"
+  startf "$FRONTEND_PATH" | tee -ia "$CLI_LOGS/start_frontend.log"
+  ;;
+
+restore_db | rdb)
+  # shellcheck source=commands/restore_database
+  . "$CLI_COMMANDS/restore_database"
+  restore "$@" | tee -ia "$CLI_LOGS/restore_database.log"
+  ;;
+
+exec)
+  # shellcheck source=commands/docker_exec
+  . "$CLI_COMMANDS/docker_exec"
+  exec "$@" | tee -ia "$CLI_LOGS/docker_exec.log"
   ;;
 
 
