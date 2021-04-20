@@ -7,8 +7,8 @@ startb() {
 
   if [ -d "venv" ]; then
     # todo: ask for docker file and services user wants to get up
-    docker-compose -f docker-compose-dev.yml up -d db
-    # todo: ask if he prefer venv on docker-compose
+    docker-compose up -d db
+    # todo: ask if he prefer venv or docker-compose
     source venv/bin/activate
     python back_end/manage.py runserver 0.0.0.0:8000
 
