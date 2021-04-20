@@ -6,10 +6,7 @@ startf() {
 
   if [ -f "/usr/bin/yarn" ]; then
     yarn start
-  elif [ -f /usr/bin/npm ]; then
-    npm run start
   else
-    echo "You must have either yarn or npm installed to start the project."
-    exit 1
+    npm run start
   fi
 }
