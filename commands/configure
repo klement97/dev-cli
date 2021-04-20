@@ -7,8 +7,8 @@ This is Developer CLI configuration.
 It will ask you a few questions and configure your CLI.
 "
 
-read -r -p "Backend project location, ex. ~/Workspace/backend: " BACKEND_PATH
+read -e -r -p "Backend project location, ex. ~/Workspace/backend: " BACKEND_PATH
 create_config "BACKEND_PATH" "$BACKEND_PATH"
 
-read -r -p "Frontend project location, ex. ~/Workspace/frontend: " FRONTEND_PATH
+read -e -r -p "Frontend project location, ex. ~/Workspace/frontend: " FRONTEND_PATH
 append_config "FRONTEND_PATH" "$FRONTEND_PATH"
