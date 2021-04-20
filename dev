@@ -45,7 +45,7 @@ Commands:
 
 case "$1" in
 
-configure | c)
+configure)
   "$CLI_COMMANDS/configure" | tee -ia "$CLI_LOGS/configure.log"
   ;;
 
