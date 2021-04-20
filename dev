@@ -33,8 +33,12 @@ https://github.com/klement97/dev-cli
 Usage: $cli_name [command]
 
 Commands:
-  deploy    Deploy
-  *         Help
+  configure           Configure the CLI to your use
+  startb or b         Start the backend development server
+  startf or f         Start the frontend development server
+  restore_db or rdb   Restore the development database
+  exec                Execute a given command in a given docker container
+  *                   This help screen
 "
   exit 1
 }
