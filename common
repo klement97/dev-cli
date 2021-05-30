@@ -14,3 +14,39 @@ create_config() {
 append_config() {
   echo "$1=$2" >>./config
 }
+
+command_exists() {
+	command -v "$@" >/dev/null 2>&1
+}
+
+fmt_error() {
+  printf '%sError: %s%s\n' "$BOLD$RED" "$*" "$RESET" >&2
+}
+
+fmt_underline() {
+  printf '\033[4m%s\033[24m\n' "$*"
+}
+
+fmt_code() {
+  # shellcheck disable=SC2016 # backtic in single-quote
+  printf '`\033[38;5;247m%s%s`\n' "$*" "$RESET"
+}
+
+setup_color() {
+	# Only use colors if connected to a terminal
+	if [ -t 1 ]; then
+		RED=$(printf '\033[31m')
+		GREEN=$(printf '\033[32m')
+		YELLOW=$(printf '\033[33m')
+		BLUE=$(printf '\033[34m')
+		BOLD=$(printf '\033[1m')
+		RESET=$(printf '\033[m')
+	else
+		RED=""
+		GREEN=""
+		YELLOW=""
+		BLUE=""
+		BOLD=""
+		RESET=""
+	fi
+}
