@@ -9,7 +9,7 @@ clone_repo() {
 }
 
 setup() {
-    echo "alias dev=~/dev-cli/dev" >> ~/.bashrc
+    echo 'alias dev="~/dev-cli/dev"' >> ~/.bashrc
     # shellcheck disable=SC1090
     source ~/.bashrc
 }
