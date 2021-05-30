@@ -67,3 +67,10 @@ Commands:
 
 For each one of the commands there is a bash script which is responsible for performing
 all of the required tasks.
+
+Copyright and License Information
+---------------------------------
+
+Copyright (c) 2021 Klement Omeri. All rights reserved.
+
+See the [LICENSE](https://github.com/klement97/dev-cli/blob/main/LICENCE)
