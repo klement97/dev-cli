@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -e
+
+REPO_URL="https://github.com/klement97/dev-cli"
+
+clone_repo() {
+    cd ~
+    git clone $REPO_URL --depth 1
+}
+
+setup() {
+    echo "alias dev=~/dev-cli/dev" >> ~/.bashrc
+    # shellcheck disable=SC1090
+    source ~/.bashrc
+}
+
+install_success() {
+# Credits goes to the creator of the tool: http://patorjk.com/software/taag/
+  cat <<'EOF'
+  _____    ______  __      __     _____   _        _____
+ |  __ \  |  ____| \ \    / /    / ____| | |      |_   _|
+ | |  | | | |__     \ \  / /    | |      | |        | |
+ | |  | | |  __|     \ \/ /     | |      | |        | |
+ | |__| | | |____     \  /      | |____  | |____   _| |_
+ |_____/  |______|     \/        \_____| |______| |_____|   ....is now installed!
+
+
+EOF
+}
+
+main() {
+  clone_repo
+  setup
+  install_success
+}
+
+main
