@@ -9,9 +9,12 @@ clone_repo() {
 }
 
 setup() {
-    echo 'alias dev="~/dev-cli/dev"' >> ~/.bashrc
-    # shellcheck disable=SC1090
-    source ~/.bashrc
+    local config_files=("$HOME/.zshrc" "$HOME/.bashrc")
+    for file in "${config_files[@]}"; do
+      echo -e "\n\nalias dev=\"$HOME/dev-cli/dev\"" >> "$file"
+      # shellcheck disable=SC1090
+      . "$file"
+    done
 }
 
 install_success() {
