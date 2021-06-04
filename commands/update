@@ -1,0 +1,6 @@
+#!/bin/bash
+
+update() {
+  cd ~/dev-cli/ || return 1
+  git pull
+}
