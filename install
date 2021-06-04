@@ -4,17 +4,11 @@ set -e
 REPO_URL="https://github.com/klement97/dev-cli"
 
 clone_repo() {
-    cd ~
-    git clone $REPO_URL --depth 1
+    git clone $REPO_URL --depth 1 ~/.dev-cli
 }
 
 setup() {
-    local config_files=("$HOME/.zshrc" "$HOME/.bashrc")
-    for file in "${config_files[@]}"; do
-      echo -e "\n\nalias dev=\"$HOME/dev-cli/dev\"" >> "$file"
-      # shellcheck disable=SC1090
-      . "$file"
-    done
+    cp ~/.dev-cli/dev /usr/bin/
 }
 
 install_success() {

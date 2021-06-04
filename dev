@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-CLI_WORKDIR="${BASH_SOURCE%/*}"
+#CLI_WORKDIR="${BASH_SOURCE%/*}"
+CLI_WORKDIR="${HOME}/.dev-cli"
 if [[ ! -d "$CLI_WORKDIR" ]]; then CLI_WORKDIR="$PWD"; fi
 export CLI_WORKDIR
 
@@ -34,6 +35,7 @@ Usage: $cli_name [command]
 
 Commands:
   configure           Configure the CLI to your use
+  update              Update the CLI by pulling the latest version with git
   startb or b         Start the backend development server
   startf or f         Start the frontend development server
   restore_db or rdb   Restore the development database
@@ -47,6 +49,10 @@ case "$1" in
 
 configure)
   "$CLI_COMMANDS/configure" | tee -ia "$CLI_LOGS/configure.log"
+  ;;
+
+update)
+  "$CLI_COMMANDS/update" | tee -ia "$CLI_LOGS/update.log"
   ;;
 
 startb | b)
